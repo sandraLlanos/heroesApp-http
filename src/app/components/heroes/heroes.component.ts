@@ -8,13 +8,18 @@ import { HeroService } from '../../services/hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes:any[] = [];
+  loading:boolean = true;
   constructor( private _heroService:HeroService ) { 
     
     this._heroService.getHeroes()
       .subscribe( (dataheroes:any) => {
         console.log(dataheroes); 
-        this.heroes = dataheroes;
-        console.log(this.heroes);  
+        setTimeout( ()=> {
+          this.loading = false
+          this.heroes = dataheroes;
+        }, 2000);
+        
+        // console.log(this.heroes);  
 
         //se podria recorrer la data que llega de heroes
         // en este caso llega un objeto de objetos
