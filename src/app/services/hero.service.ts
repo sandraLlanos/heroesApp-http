@@ -36,14 +36,36 @@ export class HeroService {
 
     let url:string = `${ this.heroUrl }/${ key$ }.json`;
     return this.http.put( url, body, { headers } )
-        .pipe ( map ( res => {
-          console.log( res );
-          return res;
-          })       
-        )   
+    .pipe ( map ( res => {
+      console.log( res );
+      return res;
+      })       
+    )   
   }
   getHero( key$:string ){
     let url:string = `${ this.heroUrl }/${ key$ }.json`
-    return this.http.get( url );
+    return this.http.get( url )
+    .pipe ( map ( res => {
+      console.log( res );
+      return res;
+      })       
+    )   
+  }
+  getHeroes(){
+    return this.http.get( this.heroesUrl )
+    .pipe ( map ( res => {
+      console.log( res );
+      return res;
+      })       
+    )   
+  }
+  deleteHeroe( key$ ){
+    let url:string = `${ this.heroUrl }/${ key$ }.json`
+    return this.http.delete( url )
+    .pipe ( map ( res => {
+      console.log( res );
+      return res;
+      })       
+    )   
   }
 }

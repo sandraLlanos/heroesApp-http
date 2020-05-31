@@ -25,18 +25,29 @@
           </tr>
         </thead>
           <tbody>
-          <tr>
-            <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            <!-- este seria en caso de no usar pipe -->
+            <!-- <tr *ngFor="let heroe of heroes; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{heroe.name}}</td>
+              <td>{{heroe.home}}</td>
+              <td>{{heroe.bio}}</td>             
+            </tr>             -->
+            <tr *ngFor="let k of heroes | key; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{heroes[k].name}}</td>
+              <td>{{heroes[k].home}}</td>
+              <td>{{heroes[k].bio}}</td> 
+              <td>
+                <button [routerLink]="['/hero', k ]"
+                        class="btn btn-outline-success mr-2">
+                  Editar
+                </button>
+                <button (click)="deleteHero( k )"
+                        class="btn btn-outline-danger">
+                  Eliminar
+                </button>
+              </td>            
+            </tr>            
           </tbody>       
       </table>
     </div>

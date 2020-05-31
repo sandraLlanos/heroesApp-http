@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeroeComponent {
   id:string;
-  nuevo:boolean = false;
+  new:boolean = false;
   hero:Hero = {
    name:"",
    home:"Marvel",
@@ -23,12 +23,22 @@ export class HeroeComponent {
 
     this.route.params.subscribe( params =>{
       console.log(params); 
-      this.id = params['id'];     
+      this.id = params['id']; 
+      
+      if (this.id !== 'new') {
+        this._heroService.getHero( this.id )       
+            .subscribe( ( hero:any ) => {
+              console.log(hero);              
+              this.hero = hero;
+            })     
+      }
+
+   
     })            
   }
  
   save() {
-    if (this.id == "new") {
+    if (this.id === "new") {
       // creation
       console.log(this.hero);     
       this._heroService.newHeroe(this.hero)
@@ -49,16 +59,10 @@ export class HeroeComponent {
   }
 
   addHero(forma:NgForm){
-
     this.router.navigate(['/hero', 'new']);
     forma.reset({
       'home':'Marvel'
     })
-
-    // this._heroService.getHero( this.id )
-    //     .subscribe( (hero:any) => {
-    //       this.heroe = hero;
-    //     })
   }
 
 }
