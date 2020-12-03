@@ -9,6 +9,7 @@ import { HeroService } from '../../services/hero.service';
 export class HeroesComponent implements OnInit {
   heroes:any[] = [];
   loading:boolean = true;
+  
   constructor( private _heroService:HeroService ) { 
     
     this._heroService.getHeroes()
@@ -34,6 +35,44 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit() {
+   let productos=[
+      {
+        nombre: 'valor1',
+        valor:100,
+      },
+      {
+        nombre: 'valor2',
+        valor:200,
+      },
+      {
+        nombre: 'valor3',
+        valor:150,
+      }
+    ]
+    productos.sort(function(a,b){
+      return (b.valor - a.valor)
+    })
+   
+    console.log(productos);
+    
+    let items = [ {id:1, value:3, perc:0.5}, {id:2, value:2, perc:0.1}, {id:3, value:1, perc:0.2} ]
+    items.sort(function (a, b){
+        return (b.value - a.value)
+    })
+    console.log(items);
+    console.log(items.sort(function (a, b){
+      return (b.value - a.value)
+  }));
+    console.log(items.sort(function (a, b) {
+      return (a.perc - b.perc)
+  }));
+    
+    
+   
+    
+   
+    
+    
 
     // con el operador delete puedo borrar las propiedades del objeto
     // var array = ["Geeky", "Theory", ".com"];
